@@ -45,8 +45,8 @@ class StoreEventRequest extends FormRequest
 
     public function attributes()
     {
-        return[
-            'body' =>'詳細',
+        return [
+            'body' => '詳細',
         ];
     }
 }

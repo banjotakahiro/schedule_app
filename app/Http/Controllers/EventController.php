@@ -12,6 +12,13 @@ class EventController extends Controller
     /**
      * Display a listing of the resource.
      */
+
+    public function __construct()
+    {
+        // アクションに合わせたpolicyのメソッドで認可されていないユーザーはエラーを投げる
+        $this->authorizeResource(Event::class, 'event');
+    }
+
     public function index()
     {
         $events = Auth::user()->events;
@@ -32,14 +39,13 @@ class EventController extends Controller
     public function store(StoreEventRequest $request)
     {
         $event = new Event($request->all());
-        $event ->user_id = $request->user()->id;
+        $event->user_id = $request->user()->id;
 
         $event->save();
 
-        // viewは飛ばすとき専門
         return redirect()
-            ->route('events.show',$event)
-            ->with('notice','予定を登録しました');
+            ->route('events.show', $event)
+            ->with('notice', '予定を登録しました');
     }
 
     /**
@@ -53,9 +59,8 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(UpdateEventRequest $request ,Event $event)
+    public function edit(Event $event)
     {
-        dd($event);
         return view('events.edit')->with(compact('event'));
     }
 
@@ -66,9 +71,10 @@ class EventController extends Controller
     {
         $event->fill($request->all());
         $event->save();
+
         return redirect()
-            ->route('events.show',$event)
-            ->with('notice','予定を登録しました');
+            ->route('events.show', $event)
+            ->with('notice', '予定を更新しました');
     }
 
     /**
@@ -76,6 +82,10 @@ class EventController extends Controller
      */
     public function destroy(Event $event)
     {
-        //
+        $event->delete();
+
+        return redirect()
+            ->route('events.index', $event)
+            ->with('notice', '予定を削除しました');
     }
 }

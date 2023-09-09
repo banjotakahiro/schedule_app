@@ -10,7 +10,7 @@
                     {{ __('Event Start') }}
                 </label>
                 <div class="shadow appearance-none border rounded w-auto py-2 px-3 text-gray-700 leading-tight">
-                {{ $event->start }}
+                    {{ $event->start }}
                 </div>
             </div>
             <div class="my-4 text-slate-500 text-lg leading-relaxed">
@@ -42,11 +42,11 @@
                     class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">
                     {{ __('Go back') }}
                 </a>
-                <a href="{{ route('events.edit',$event) }}"
+                <a href="{{ route('events.edit', $event) }}"
                     class="bg-green-500 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline w-20 mr-2">
                     {{ __('Edit') }}
                 </a>
-                <form action="{{ route('events.destroy',$event) }}" method="post">
+                <form action="{{ route('events.destroy', $event) }}" method="post">
                     @csrf
                     @method('DELETE')
                     <input type="submit" value="{{ __('Delete') }}" onclick="if(!confirm('削除しますか？')){return false};"
@@ -56,15 +56,3 @@
         </div>
     </div>
 </x-app-layout>
-
-
-
-
-
-
-
-
-
-
-
-

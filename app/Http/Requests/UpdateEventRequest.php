@@ -30,22 +30,22 @@ class UpdateEventRequest extends FormRequest
     }
 
     protected function prepareForValidation()
-    {   
+    {
         // 三項演算子と制御構文は同じ。nullだとrequiredに引っかかる
-        $start = ($this->filled(['start_date','start_time']))
-        ? $this->start_date . '_' .$this->start_time:'';
-        $end = ($this->filled(['end_date','end_time']))
-        ? $this->end_date . '_' .$this->end_time:'';
+        $start = ($this->filled(['start_date', 'start_time']))
+            ? $this->start_date . ' ' . $this->start_time : '';
+        $end = ($this->filled(['end_date', 'end_time']))
+            ? $this->end_date . ' ' . $this->end_time : '';
 
         $this->merge([
-            'start'=>$start,
-            'end' =>$end,
+            'start' => $start,
+            'end' => $end,
         ]);
     }
     public function attributes()
     {
-        return[
-            'body' =>'詳細',
+        return [
+            'body' => '詳細',
         ];
     }
 }
