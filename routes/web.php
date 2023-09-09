@@ -1,5 +1,6 @@
 <?php
 use App\Http\Controllers\EventController;
+use App\Http\Controllers\FullCalendarController;
 use Illuminate\Support\Facades\Route;
 
 /*
