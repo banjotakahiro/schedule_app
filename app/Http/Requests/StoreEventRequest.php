@@ -9,6 +9,7 @@ class StoreEventRequest extends FormRequest
     /**
      * Determine if the user is authorized to make this request.
      */
+    // ログインしていなければこの操作は使えない
     public function authorize(): bool
     {
         return true;

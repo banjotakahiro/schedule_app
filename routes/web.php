@@ -27,5 +27,9 @@ Route::middleware([
 
     Route::resource('events',EventController::class);
 
+    Route::get('/calender',function(){
+        return view('full-calendar');
+    })->name('calendar');
+
 });
 
